@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\BoundedContext\Shared\Main\Roll\Domain;
+namespace Src\BoundedContext\Shared\Main\Roll\Domain\Entities;
 
 
 
