@@ -5,7 +5,7 @@ namespace Src\BoundedContext\Shared\Main\Roll\Application\Services;
 use Random\RandomException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
-use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Roll;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Services\Roll;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceFaces;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceQuantity;
 

@@ -1,9 +1,10 @@
 <?php
 
-namespace Src\BoundedContext\Shared\Main\Roll\Domain\Entities;
+namespace Src\BoundedContext\Shared\Main\Roll\Domain\Services;
 
 use Random\RandomException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 
 class Roll
 {
