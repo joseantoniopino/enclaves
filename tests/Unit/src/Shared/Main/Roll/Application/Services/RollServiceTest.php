@@ -16,8 +16,9 @@ class RollServiceTest extends TestCase
     {
         $service = new RollService();
         $definitions = ['2d6', '1d20'];
+        $modifier = 2;
 
-        $result = $service->__invoke($definitions);
+        $result = $service->__invoke($definitions, $modifier);
 
         $this->assertInstanceOf(RollDto::class, $result);
         $this->assertIsInt($result->total);

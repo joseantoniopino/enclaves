@@ -19,7 +19,7 @@ class RollControllerTest extends TestCase
     public function testInvoke()
     {
         $serviceMock = Mockery::mock(RollService::class);
-        $serviceMock->shouldReceive('__invoke')->andReturn(new RollDto(18, [['dice' => 'D6', 'result' => 3]]));
+        $serviceMock->shouldReceive('__invoke')->andReturn(new RollDto(18, 2, [['dice' => 'D6', 'result' => 3]]));
 
         $controller = new RollController($serviceMock);
 

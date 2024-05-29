@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\src\Shared\Main\Roll\Domain\Services;
 
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Tests\TestCase;
 use Random\RandomException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
@@ -13,6 +14,7 @@ class RollTest extends TestCase
 {
     /**
      * @throws RandomException
+     * @throws InvalidDiceDefinitionException
      */
     public function testInvoke()
     {
@@ -21,13 +23,24 @@ class RollTest extends TestCase
             new Dice(new DiceQuantity(1), new DiceFaces(20))
         ];
 
-        $roll = new Roll($dices);
+        $modifier = 2;
+
+        $roll = new Roll($dices, $modifier);
         $result = $roll->__invoke();
 
+        $totalFromDetails = 0;
+
+        foreach ($result['details'] as $detail) {
+            $totalFromDetails += $detail['result'];
+        }
+
+        $this->assertEquals($result['total'], $totalFromDetails + $modifier);
         $this->assertArrayHasKey('total', $result);
         $this->assertArrayHasKey('details', $result);
+        $this->assertArrayHasKey('modifier', $result);
         $this->assertIsInt($result['total']);
         $this->assertIsArray($result['details']);
-        $this->assertCount(3, $result['details']); // 2 dice with 6 faces and 1 dice with 20 faces
+        $this->assertIsInt($result['modifier']);
+        $this->assertCount(3, $result['details']);
     }
 }
