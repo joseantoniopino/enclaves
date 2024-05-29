@@ -2,7 +2,7 @@
 
 namespace Tests\Unit\src\Shared\Main\Roll\Domain\Factories;
 
-use PHPUnit\Framework\TestCase;
+use Tests\TestCase;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Factories\DiceFactory;
 

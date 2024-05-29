@@ -6,7 +6,7 @@ class RollDto
 {
     /**
      * @param int $total
-     * @param string[] $details
+     * @param array[] $details
      */
     public function __construct(
         public readonly int $total,
