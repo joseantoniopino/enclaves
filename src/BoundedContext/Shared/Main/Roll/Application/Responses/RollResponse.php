@@ -7,10 +7,12 @@ class RollResponse
     /**
      * @param int $total
      * @param array[] $details
+     * @param int $modifier
      */
     public function __construct(
         public readonly int $total,
         public readonly array $details,
+        public readonly int $modifier,
     ) {
     }
 
@@ -19,6 +21,7 @@ class RollResponse
         return [
             'total' => $this->total,
             'details' => $this->details,
+            'modifier' => $this->modifier,
         ];
     }
 }

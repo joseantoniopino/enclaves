@@ -11,15 +11,16 @@ class RollService
 {
     /**
      * @param string[] $diceDefinitions
+     * @param int|null $modifier
      * @return RollDto
      * @throws RandomException
      */
-    public function __invoke(array $diceDefinitions): RollDto
+    public function __invoke(array $diceDefinitions, ?int $modifier): RollDto
     {
         $dices = DiceFactory::createFromDefinitions($diceDefinitions);
 
-        $rollData = (new Roll($dices))->__invoke();
+        $rollData = (new Roll($dices, $modifier))->__invoke();
 
-        return new RollDto($rollData['total'], $rollData['details']);
+        return new RollDto($rollData['total'], $rollData['details'], $rollData['modifier']);
     }
 }

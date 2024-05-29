@@ -12,6 +12,7 @@ class Roll
      */
     public function __construct(
         private readonly array $dices,
+        private readonly ?int $modifier,
     ) {
     }
 
@@ -34,9 +35,14 @@ class Roll
             }
         }
 
+        if ($this->modifier) {
+            $total += $this->modifier;
+        }
+
         return [
             'total' => $total,
-            'details' => $details
+            'modifier' => $this->modifier ?? 0,
+            'details' => $details,
         ];
     }
 }

@@ -16,6 +16,7 @@ class RollRequest extends FormRequest
         return [
             'dices' => 'required|array|min:1',
             'dices.*' => ['required', 'regex:/^\d+d\d+$/'],
+            'modifier' => 'nullable|integer',
         ];
     }
 
