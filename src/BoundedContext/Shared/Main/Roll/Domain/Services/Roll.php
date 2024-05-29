@@ -3,7 +3,6 @@
 namespace Src\BoundedContext\Shared\Main\Roll\Domain\Services;
 
 use Random\RandomException;
-use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 
 class Roll
@@ -17,9 +16,10 @@ class Roll
     }
 
     /**
+     * @return array
      * @throws RandomException
      */
-    public function __invoke(): RollDto
+    public function __invoke(): array
     {
         $total = 0;
         $details = [];
@@ -34,6 +34,9 @@ class Roll
             }
         }
 
-        return new RollDto($total, $details);
+        return [
+            'total' => $total,
+            'details' => $details
+        ];
     }
 }

@@ -4,10 +4,8 @@ namespace Src\BoundedContext\Shared\Main\Roll\Application\Services;
 
 use Random\RandomException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
-use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Factories\DiceFactory;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Services\Roll;
-use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceFaces;
-use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceQuantity;
 
 class RollService
 {
@@ -18,18 +16,10 @@ class RollService
      */
     public function __invoke(array $diceDefinitions): RollDto
     {
-        $dices = [];
-        foreach ($diceDefinitions as $dice) {
-            list($quantity, $faces) = explode('d', $dice);
+        $dices = DiceFactory::createFromDefinitions($diceDefinitions);
 
-            $dices[] = new Dice(
-                new DiceQuantity($quantity),
-                new DiceFaces($faces)
-            );
-        }
+        $rollData = (new Roll($dices))->__invoke();
 
-        $roll = (new Roll($dices))->__invoke();
-
-        return new RollDto($roll->total, $roll->details);
+        return new RollDto($rollData['total'], $rollData['details']);
     }
 }

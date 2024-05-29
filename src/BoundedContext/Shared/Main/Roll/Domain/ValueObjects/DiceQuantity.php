@@ -6,5 +6,4 @@ use Src\BoundedContext\Shared\Helpers\Domain\ValueObjects\IntValueObject;
 
 class DiceQuantity extends IntValueObject
 {
-
 }

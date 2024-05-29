@@ -7,4 +7,3 @@ use Src\BoundedContext\Shared\Helpers\Domain\ValueObjects\IntValueObject;
 class DiceFaces extends IntValueObject
 {
 }
-
