@@ -11,8 +11,8 @@ class RollDto
      */
     public function __construct(
         public readonly int $total,
-        public readonly array $details,
         public readonly int $modifier,
+        public readonly array $details,
     ) {
     }
 }

@@ -21,6 +21,6 @@ class RollService
 
         $rollData = (new Roll($dices, $modifier))->__invoke();
 
-        return new RollDto($rollData['total'], $rollData['details'], $rollData['modifier']);
+        return new RollDto($rollData['total'], $rollData['modifier'], $rollData['details']);
     }
 }

@@ -35,12 +35,8 @@ class Roll
             }
         }
 
-        if ($this->modifier) {
-            $total += $this->modifier;
-        }
-
         return [
-            'total' => $total,
+            'total' => $total + $this->modifier ?? 0,
             'modifier' => $this->modifier ?? 0,
             'details' => $details,
         ];
