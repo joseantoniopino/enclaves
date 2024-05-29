@@ -16,7 +16,7 @@ class Roll
     }
 
     /**
-     * @return array
+     * @return array<string, int|array[]>
      * @throws RandomException
      */
     public function __invoke(): array
