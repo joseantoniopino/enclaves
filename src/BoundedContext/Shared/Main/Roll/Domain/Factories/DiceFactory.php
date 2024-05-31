@@ -3,6 +3,7 @@
 namespace Src\BoundedContext\Shared\Main\Roll\Domain\Factories;
 
 use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceFaces;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceQuantity;
 
@@ -11,6 +12,7 @@ class DiceFactory
     /**
      * @param string[] $diceDefinitions
      * @return Dice[]
+     * @throws InvalidDiceDefinitionException
      */
     public static function createFromDefinitions(array $diceDefinitions): array
     {

@@ -43,4 +43,55 @@ class RollTest extends TestCase
         $this->assertIsInt($result['modifier']);
         $this->assertCount(3, $result['details']);
     }
+
+    /**
+     * @throws RandomException
+     * @throws InvalidDiceDefinitionException
+     */
+    public function testInvokeWithSingleDice()
+    {
+        $dices = [
+            new Dice(new DiceQuantity(1), new DiceFaces(6))
+        ];
+
+        $modifier = 0;
+
+        $roll = new Roll($dices, $modifier);
+        $result = $roll->__invoke();
+
+        $this->assertEquals($result['total'], $result['details'][0]['result']);
+        $this->assertArrayHasKey('total', $result);
+        $this->assertArrayHasKey('details', $result);
+        $this->assertArrayHasKey('modifier', $result);
+        $this->assertIsInt($result['total']);
+        $this->assertIsArray($result['details']);
+        $this->assertIsInt($result['modifier']);
+        $this->assertCount(1, $result['details']);
+    }
+
+    /**
+     * @throws RandomException
+     * @throws InvalidDiceDefinitionException
+     */
+    /**
+     * @throws RandomException
+     * @throws InvalidDiceDefinitionException
+     */
+    public function testInvokeWithException()
+    {
+        $this->expectException(RandomException::class);
+
+        $dices = [
+            new Dice(new DiceQuantity(1), new DiceFaces(6))
+        ];
+
+        $roll = new class($dices, null) extends Roll {
+            protected function randomInt(int $min, int $max): int
+            {
+                throw new RandomException("Mocked exception");
+            }
+        };
+
+        $roll->__invoke();
+    }
 }

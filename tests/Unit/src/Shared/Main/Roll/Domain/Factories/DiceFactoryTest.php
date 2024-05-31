@@ -2,6 +2,7 @@
 
 namespace Tests\Unit\src\Shared\Main\Roll\Domain\Factories;
 
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Tests\TestCase;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Factories\DiceFactory;
@@ -21,6 +22,20 @@ class DiceFactoryTest extends TestCase
         $this->assertEquals(20, $dices[1]->faces->value);
     }
 
+    /**
+     * @throws InvalidDiceDefinitionException
+     */
+    public function testCreateFromInvalidDefinitions()
+    {
+        $this->expectException(InvalidDiceDefinitionException::class);
+
+        $definitions = ['2d-6', '1d20']; // Definición inválida
+        DiceFactory::createFromDefinitions($definitions);
+    }
+
+    /**
+     * @throws InvalidDiceDefinitionException
+     */
     public function testCreateFromEmptyDefinitions()
     {
         $definitions = [];

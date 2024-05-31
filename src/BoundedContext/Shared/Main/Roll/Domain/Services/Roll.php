@@ -26,7 +26,7 @@ class Roll
         $details = [];
         foreach ($this->dices as $dice) {
             for ($i = 0; $i < $dice->quantity->value; $i++) {
-                $result = random_int(1, $dice->faces->value);
+                $result = $this->randomInt(1, $dice->faces->value); // Usa la función dentro del espacio de nombres
                 $total += $result;
                 $details[] = [
                     'dice' => "D{$dice->faces->value}",
@@ -40,5 +40,15 @@ class Roll
             'modifier' => $this->modifier ?? 0,
             'details' => $details,
         ];
+    }
+
+    /**
+     * Wrapper around the random_int function to allow mocking in tests.
+     *
+     * @throws RandomException
+     */
+    protected function randomInt(int $min, int $max): int
+    {
+        return random_int($min, $max);
     }
 }

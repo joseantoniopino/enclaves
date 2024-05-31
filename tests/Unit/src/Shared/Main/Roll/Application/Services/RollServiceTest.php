@@ -23,5 +23,13 @@ class RollServiceTest extends TestCase
         $this->assertInstanceOf(RollDto::class, $result);
         $this->assertIsInt($result->total);
         $this->assertIsArray($result->details);
+        $this->assertEquals($modifier, $result->modifier);
+
+        // Verificar que el total es correcto (al menos mayor que 0)
+        $this->assertGreaterThan(0, $result->total);
+
+        // Verificar que los detalles contienen el número correcto de resultados
+        $expectedDetailsCount = 3; // 2d6 + 1d20 = 3 tiradas
+        $this->assertCount($expectedDetailsCount, $result->details);
     }
 }
