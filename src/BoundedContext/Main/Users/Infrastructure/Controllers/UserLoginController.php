@@ -4,46 +4,40 @@ namespace Src\BoundedContext\Main\Users\Infrastructure\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 use Src\BoundedContext\Main\Users\Application\Responses\UserResponse;
-use Src\BoundedContext\Main\Users\Application\Services\UserLoginService;
+use Src\BoundedContext\Main\Users\Application\Services\FindUserByEmailService;
 use Src\BoundedContext\Main\Users\Domain\Exceptions\InvalidCredentialsException;
 use Src\BoundedContext\Main\Users\Infrastructure\Requests\UserLoginRequest;
+use Src\BoundedContext\Main\Users\Infrastructure\Services\AuthService;
 
 class UserLoginController extends Controller
 {
     public function __construct(
-        private readonly UserLoginService $service
+        private readonly FindUserByEmailService $findUserByEmailService,
+        private readonly AuthService            $authService
     ) {
     }
 
     /**
+     * @throws ValidationException
      * @throws InvalidCredentialsException
      */
     public function __invoke(UserLoginRequest $request): JsonResponse
     {
-        $user = $this->service->__invoke($request->email);
+        $user = $this->findUserByEmailService->__invoke($request->email);
 
-        $this->checkPassword($request->password, $user->password);
+        $eloquentUser = $this->authService->authenticate($request->email, $request->password);
+
+        $token = $this->authService->createToken($eloquentUser);
 
         $response = new UserResponse(
             $user->uuid,
             $user->name,
             $user->email,
-            null,
-            $user->token
+            $token
         );
 
         return response()->json($response->toArray());
-    }
-
-    private function checkPassword(string $requestPassword, string $userPassword): void
-    {
-        if (!Hash::check($requestPassword, $userPassword)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
-        }
     }
 }

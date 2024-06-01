@@ -16,15 +16,11 @@ readonly class UserFactory
         string $uuid,
         string $name,
         string $email,
-        string $password,
-        ?string $token = null,
     ): User {
         return new User(
             new UserUuid($uuid),
             new UserName($name),
             new UserEmail($email),
-            new UserPassword($password),
-            $token ? new UserToken($token) : null,
         );
     }
 }

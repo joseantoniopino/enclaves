@@ -8,8 +8,6 @@ readonly class UserDto
         public string $uuid,
         public string $name,
         public string $email,
-        public ?string $password = null,
-        public ?string $token = null,
     ) {
     }
 }

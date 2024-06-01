@@ -6,7 +6,7 @@ use Src\BoundedContext\Main\Users\Domain\DTO\UserDto;
 use Src\BoundedContext\Main\Users\Domain\Exceptions\InvalidCredentialsException;
 use Src\BoundedContext\Main\Users\Domain\Repositories\UserRepository;
 
-readonly class UserLoginService
+readonly class FindUserByEmailService
 {
     public function __construct(
         private UserRepository $repository
@@ -28,8 +28,6 @@ readonly class UserLoginService
             $user->uuid->value,
             $user->name->value,
             $user->email->value,
-            $user->password->value,
-            $user->token->value,
         );
     }
 }
