@@ -28,4 +28,9 @@ class AuthService
     {
         return $user->createToken('auth_token')->plainTextToken;
     }
+
+    public function logout(): void
+    {
+        auth()->user()->tokens()->delete();
+    }
 }
