@@ -14,7 +14,7 @@ readonly class UserRegisterService
     ) {
     }
 
-    public function __invoke(?string $uuid, string $name, string $email, string $password)
+    public function __invoke(?string $uuid, string $name, string $email, string $password): UserDto
     {
         $user = UserFactory::fromPrimitives(
             $uuid ?? UserUuid::random(),

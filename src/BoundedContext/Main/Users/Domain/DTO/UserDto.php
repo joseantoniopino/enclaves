@@ -2,7 +2,7 @@
 
 namespace Src\BoundedContext\Main\Users\Domain\DTO;
 
-class UserDto
+readonly class UserDto
 {
     public function __construct(
         public string $uuid,
