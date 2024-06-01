@@ -28,6 +28,8 @@ readonly class UserLoginService
             $user->uuid->value,
             $user->name->value,
             $user->email->value,
+            $user->password->value,
+            $user->token->value,
         );
     }
 }

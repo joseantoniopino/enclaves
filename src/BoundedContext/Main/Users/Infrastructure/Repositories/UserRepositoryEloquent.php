@@ -27,16 +27,22 @@ class UserRepositoryEloquent implements UserRepository
             return null;
         }
 
-        return $this->toDomainEntity($userModel);
+        return $this->toDomainEntity($userModel, true);
     }
 
-    private function toDomainEntity(UserModel $userModel): User
+    private function toDomainEntity(UserModel $userModel, bool $createToken = false): User
     {
         return UserFactory::fromPrimitives(
             $userModel->uuid,
             $userModel->name,
             $userModel->email,
             $userModel->password,
+            $createToken ? $this->generateToken($userModel) : null,
         );
+    }
+
+    private function generateToken(UserModel $user): string
+    {
+        return $user->createToken('auth_token')->plainTextToken;
     }
 }

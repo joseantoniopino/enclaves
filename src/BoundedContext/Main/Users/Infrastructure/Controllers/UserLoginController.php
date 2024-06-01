@@ -26,21 +26,17 @@ class UserLoginController extends Controller
     {
         $user = $this->service->__invoke($request->email);
 
-        $requestPassword = $request->password;
-        $eloquentUser = $this->getEloquentUser($user->uuid);
-        $userPassword = $eloquentUser->password;
-
-        $this->checkPassword($requestPassword, $userPassword);
-
-        $token = $this->generateToken($eloquentUser);
+        $this->checkPassword($request->password, $user->password);
 
         $response = new UserResponse(
             $user->uuid,
             $user->name,
             $user->email,
+            null,
+            $user->token
         );
 
-        return response()->json(array_merge($response->toArray(), ['token' => $token]));
+        return response()->json($response->toArray());
     }
 
     private function checkPassword(string $requestPassword, string $userPassword): void
@@ -50,15 +46,5 @@ class UserLoginController extends Controller
                 'email' => ['The provided credentials are incorrect.'],
             ]);
         }
-    }
-
-    private function getEloquentUser(string $uuid): User
-    {
-        return User::whereUuid($uuid)->first();
-    }
-
-    private function generateToken(User $user): string
-    {
-        return $user->createToken('auth_token')->plainTextToken;
     }
 }
