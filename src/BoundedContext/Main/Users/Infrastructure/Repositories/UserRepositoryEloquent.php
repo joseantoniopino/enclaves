@@ -27,7 +27,7 @@ class UserRepositoryEloquent implements UserRepository
             return null;
         }
 
-        return $this->toDomainEntity($userModel, true);
+        return $this->toDomainEntity($userModel);
     }
 
     private function toDomainEntity(UserModel $userModel): User
