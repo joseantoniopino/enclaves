@@ -3,6 +3,8 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Src\BoundedContext\Main\Users\Domain\Repositories\UserRepository;
+use Src\BoundedContext\Main\Users\Infrastructure\Repositories\UserRepositoryEloquent;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -11,7 +13,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register(): void
     {
-        //
+        $this->bindRepositories();
     }
 
     /**
@@ -20,5 +22,10 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         //
+    }
+
+    private function bindRepositories(): void
+    {
+        $this->app->bind(UserRepository::class,UserRepositoryEloquent::class);
     }
 }
