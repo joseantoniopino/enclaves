@@ -13,7 +13,7 @@ readonly class User
         public UserUuid $uuid,
         public UserName $name,
         public UserEmail $email,
-        public ?UserPassword $password,
+        public ?UserPassword $password = null,
     ) {
     }
 }
