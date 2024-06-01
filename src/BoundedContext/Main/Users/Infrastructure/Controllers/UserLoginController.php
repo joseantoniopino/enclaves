@@ -15,7 +15,7 @@ class UserLoginController extends Controller
 {
     public function __construct(
         private readonly FindUserByEmailService $findUserByEmailService,
-        private readonly AuthService            $authService
+        private readonly AuthService $authService
     ) {
     }
 

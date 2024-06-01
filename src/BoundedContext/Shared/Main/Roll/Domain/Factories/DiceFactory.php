@@ -10,21 +10,23 @@ use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceQuantity;
 class DiceFactory
 {
     /**
-     * @param string[] $diceDefinitions
+     * @param  string[]  $diceDefinitions
      * @return Dice[]
+     *
      * @throws InvalidDiceDefinitionException
      */
     public static function createFromDefinitions(array $diceDefinitions): array
     {
         $dices = [];
         foreach ($diceDefinitions as $dice) {
-            list($quantity, $faces) = explode('d', $dice);
+            [$quantity, $faces] = explode('d', $dice);
 
             $dices[] = new Dice(
                 new DiceQuantity($quantity),
                 new DiceFaces($faces)
             );
         }
+
         return $dices;
     }
 }

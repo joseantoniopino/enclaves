@@ -4,8 +4,8 @@ namespace Src\BoundedContext\Main\Users\Infrastructure\Repositories;
 
 use Src\BoundedContext\Main\Users\Domain\Entities\User;
 use Src\BoundedContext\Main\Users\Domain\Factories\UserFactory;
-use Src\BoundedContext\Main\Users\Infrastructure\Models\User as UserModel;
 use Src\BoundedContext\Main\Users\Domain\Repositories\UserRepository;
+use Src\BoundedContext\Main\Users\Infrastructure\Models\User as UserModel;
 
 class UserRepositoryEloquent implements UserRepository
 {

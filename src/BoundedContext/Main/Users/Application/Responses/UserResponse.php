@@ -21,7 +21,7 @@ class UserResponse
             'email' => $this->email,
         ];
 
-        if (null !== $this->token) {
+        if ($this->token !== null) {
             $tokenArray = ['token' => $this->token];
         }
 

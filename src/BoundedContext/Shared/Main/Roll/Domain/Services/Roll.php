@@ -8,7 +8,7 @@ use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 class Roll
 {
     /**
-     * @param Dice[] $dices
+     * @param  Dice[]  $dices
      */
     public function __construct(
         private readonly array $dices,
@@ -18,6 +18,7 @@ class Roll
 
     /**
      * @return array<string, int|array[]>
+     *
      * @throws RandomException
      */
     public function __invoke(): array
@@ -26,7 +27,7 @@ class Roll
         $details = [];
         foreach ($this->dices as $dice) {
             for ($i = 0; $i < $dice->quantity->value; $i++) {
-                $result = $this->randomInt(1, $dice->faces->value); // Usa la función dentro del espacio de nombres
+                $result = $this->randomInt(1, $dice->faces->value);
                 $total += $result;
                 $details[] = [
                     'dice' => "D{$dice->faces->value}",

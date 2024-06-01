@@ -5,9 +5,7 @@ namespace Src\BoundedContext\Shared\Main\Roll\Application\Responses;
 class RollResponse
 {
     /**
-     * @param int $total
-     * @param array[] $details
-     * @param int $modifier
+     * @param  array[]  $details
      */
     public function __construct(
         public readonly int $total,

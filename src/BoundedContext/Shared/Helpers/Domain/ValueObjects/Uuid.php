@@ -3,9 +3,9 @@
 namespace Src\BoundedContext\Shared\Helpers\Domain\ValueObjects;
 
 use Ramsey\Uuid\Uuid as RamseyUuid;
+
 class Uuid implements \Stringable
 {
-
     public function __construct(
         public readonly string $value
     ) {
@@ -38,5 +38,4 @@ class Uuid implements \Stringable
     {
         return RamseyUuid::isValid($id);
     }
-
 }

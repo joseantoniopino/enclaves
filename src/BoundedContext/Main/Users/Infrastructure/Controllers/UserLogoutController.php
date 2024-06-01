@@ -16,6 +16,7 @@ class UserLogoutController extends Controller
     public function __invoke(): JsonResponse
     {
         $this->authService->logout();
+
         return response()->json(['message' => 'User logged out. Your token has been revoked. Login again to get a new token.']);
     }
 }

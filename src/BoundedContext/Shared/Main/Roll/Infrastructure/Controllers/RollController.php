@@ -22,6 +22,7 @@ class RollController extends Controller
     public function __invoke(RollRequest $request): JsonResponse
     {
         $roll = $this->rollService->__invoke($request->dices, $request->modifier);
-        return response()->json((new RollResponse($roll->total, $roll->modifier ,$roll->details))->toArray());
+
+        return response()->json((new RollResponse($roll->total, $roll->modifier, $roll->details))->toArray());
     }
 }
