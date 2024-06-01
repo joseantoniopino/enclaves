@@ -9,7 +9,6 @@ use Illuminate\Validation\ValidationException;
 use Src\BoundedContext\Main\Users\Application\Responses\UserResponse;
 use Src\BoundedContext\Main\Users\Application\Services\UserLoginService;
 use Src\BoundedContext\Main\Users\Domain\Exceptions\InvalidCredentialsException;
-use Src\BoundedContext\Main\Users\Infrastructure\Models\User;
 use Src\BoundedContext\Main\Users\Infrastructure\Requests\UserLoginRequest;
 
 class UserLoginController extends Controller
