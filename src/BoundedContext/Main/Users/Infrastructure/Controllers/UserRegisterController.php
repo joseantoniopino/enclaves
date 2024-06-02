@@ -6,13 +6,13 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Src\BoundedContext\Main\Users\Application\Responses\UserResponse;
-use Src\BoundedContext\Main\Users\Application\Services\UserRegisterService;
+use Src\BoundedContext\Main\Users\Application\Services\CreateUserService;
 use Src\BoundedContext\Main\Users\Infrastructure\Requests\UserRegisterRequest;
 
 class UserRegisterController extends Controller
 {
     public function __construct(
-        private readonly UserRegisterService $service
+        private readonly CreateUserService $service
     ) {
     }
 
