@@ -2,13 +2,13 @@
 
 namespace Tests\Unit\src\Shared\Main\Roll\Domain\Services;
 
-use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
-use Tests\TestCase;
 use Random\RandomException;
-use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Services\Roll;
+use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\Dice;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceFaces;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceQuantity;
+use Tests\TestCase;
 
 class RollTest extends TestCase
 {

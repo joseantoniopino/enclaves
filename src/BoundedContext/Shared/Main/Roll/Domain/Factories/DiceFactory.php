@@ -2,8 +2,8 @@
 
 namespace Src\BoundedContext\Shared\Main\Roll\Domain\Factories;
 
-use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
+use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\Dice;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceFaces;
 use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\DiceQuantity;
 

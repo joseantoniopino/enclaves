@@ -3,9 +3,9 @@
 namespace Tests\Unit\src\Shared\Main\Roll\Domain\Factories;
 
 use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
-use Tests\TestCase;
-use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Factories\DiceFactory;
+use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\Dice;
+use Tests\TestCase;
 
 class DiceFactoryTest extends TestCase
 {

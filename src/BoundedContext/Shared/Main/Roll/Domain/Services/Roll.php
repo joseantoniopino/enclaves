@@ -3,7 +3,7 @@
 namespace Src\BoundedContext\Shared\Main\Roll\Domain\Services;
 
 use Random\RandomException;
-use Src\BoundedContext\Shared\Main\Roll\Domain\Entities\Dice;
+use Src\BoundedContext\Shared\Main\Roll\Domain\ValueObjects\Dice;
 
 class Roll
 {
