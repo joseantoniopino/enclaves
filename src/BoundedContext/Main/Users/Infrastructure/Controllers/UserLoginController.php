@@ -8,14 +8,14 @@ use Illuminate\Validation\ValidationException;
 use Src\BoundedContext\Main\Users\Application\Responses\UserResponse;
 use Src\BoundedContext\Main\Users\Application\Services\FindUserByEmailService;
 use Src\BoundedContext\Main\Users\Domain\Exceptions\InvalidCredentialsException;
+use Src\BoundedContext\Main\Users\Infrastructure\Interfaces\AuthServiceInterface;
 use Src\BoundedContext\Main\Users\Infrastructure\Requests\UserLoginRequest;
-use Src\BoundedContext\Main\Users\Infrastructure\Services\AuthService;
 
 class UserLoginController extends Controller
 {
     public function __construct(
         private readonly FindUserByEmailService $findUserByEmailService,
-        private readonly AuthService $authService
+        private readonly AuthServiceInterface $authService,
     ) {
     }
 
@@ -35,9 +35,8 @@ class UserLoginController extends Controller
             $user->uuid,
             $user->name,
             $user->email,
-            $token
         );
 
-        return response()->json($response->toArray());
+        return response()->json(array_merge($response->toArray(), ['token' => $token]));
     }
 }

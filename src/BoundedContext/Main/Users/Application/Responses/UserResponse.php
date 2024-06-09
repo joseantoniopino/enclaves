@@ -8,23 +8,15 @@ class UserResponse
         public string $uuid,
         public string $name,
         public string $email,
-        public ?string $token = null,
     ) {
     }
 
     public function toArray(): array
     {
-        $tokenArray = [];
-        $response = [
+        return [
             'uuid' => $this->uuid,
             'name' => $this->name,
             'email' => $this->email,
         ];
-
-        if ($this->token !== null) {
-            $tokenArray = ['token' => $this->token];
-        }
-
-        return array_merge($response, $tokenArray);
     }
 }

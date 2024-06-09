@@ -4,7 +4,9 @@ namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Src\BoundedContext\Main\Users\Domain\Repositories\UserRepository;
+use Src\BoundedContext\Main\Users\Infrastructure\Interfaces\AuthServiceInterface;
 use Src\BoundedContext\Main\Users\Infrastructure\Repositories\UserRepositoryEloquent;
+use Src\BoundedContext\Main\Users\Infrastructure\Services\AuthService;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -14,6 +16,7 @@ class AppServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->bindRepositories();
+        $this->app->bind(AuthServiceInterface::class, AuthService::class);
     }
 
     /**
@@ -26,6 +29,6 @@ class AppServiceProvider extends ServiceProvider
 
     private function bindRepositories(): void
     {
-        $this->app->bind(UserRepository::class,UserRepositoryEloquent::class);
+        $this->app->bind(UserRepository::class, UserRepositoryEloquent::class);
     }
 }

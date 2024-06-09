@@ -4,16 +4,17 @@ namespace Src\BoundedContext\Main\Users\Infrastructure\Services;
 
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
-use Src\BoundedContext\Main\Users\Infrastructure\Models\User as EloquentUser;
+use Src\BoundedContext\Main\Users\Infrastructure\Interfaces\AuthServiceInterface;
+use Src\BoundedContext\Main\Users\Infrastructure\Models\User;
 
-class AuthService
+class AuthService implements AuthServiceInterface
 {
     /**
      * @throws ValidationException
      */
-    public function authenticate(string $email, string $password): EloquentUser
+    public function authenticate(string $email, string $password): User
     {
-        $user = EloquentUser::where('email', $email)->first();
+        $user = User::where('email', $email)->first();
 
         if (!$user || !Hash::check($password, $user->password)) {
             throw ValidationException::withMessages([
@@ -24,7 +25,7 @@ class AuthService
         return $user;
     }
 
-    public function createToken(EloquentUser $user): string
+    public function createToken(User $user): string
     {
         return $user->createToken('auth_token')->plainTextToken;
     }
