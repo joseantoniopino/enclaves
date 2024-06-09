@@ -7,10 +7,10 @@ use Src\BoundedContext\Main\Users\Domain\Factories\UserFactory;
 use Src\BoundedContext\Main\Users\Domain\Repositories\UserRepository;
 use Src\BoundedContext\Shared\Main\Users\Domain\ValueObjects\UserUuid;
 
-readonly class CreateUserService
+class CreateUserService
 {
     public function __construct(
-        private UserRepository $repository
+        private readonly UserRepository $repository
     ) {
     }
 

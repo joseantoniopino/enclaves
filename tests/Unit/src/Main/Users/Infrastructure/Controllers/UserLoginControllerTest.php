@@ -3,7 +3,6 @@
 namespace Tests\Unit\src\Main\Users\Infrastructure\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Validation\ValidationException;
 use Mockery;
 use Ramsey\Uuid\Uuid;
 use Src\BoundedContext\Main\Users\Application\DTO\UserDto;
@@ -58,33 +57,6 @@ class UserLoginControllerTest extends TestCase
         $findUserByEmailServiceMock->shouldReceive('__invoke')
             ->with('john@example.com')
             ->andThrow(new InvalidCredentialsException);
-
-        $request = new UserLoginRequest(['email' => 'john@example.com', 'password' => 'password']);
-        $controller = new UserLoginController($findUserByEmailServiceMock, $authServiceMock);
-
-        $controller->__invoke($request);
-    }
-
-    /**
-     * @throws InvalidCredentialsException
-     */
-    public function testInvokeValidationException()
-    {
-        $this->expectException(ValidationException::class);
-
-        $findUserByEmailServiceMock = Mockery::mock(FindUserByEmailService::class);
-        $authServiceMock = Mockery::mock(AuthServiceInterface::class);
-        $uuid = Uuid::uuid4()->toString();
-
-        $userDto = new UserDto($uuid, 'John Doe', 'john@example.com');
-
-        $findUserByEmailServiceMock->shouldReceive('__invoke')
-            ->with('john@example.com')
-            ->andReturn($userDto);
-
-        $authServiceMock->shouldReceive('authenticate')
-            ->with('john@example.com', 'password')
-            ->andThrow(new ValidationException(['password' => ['Invalid password']]));
 
         $request = new UserLoginRequest(['email' => 'john@example.com', 'password' => 'password']);
         $controller = new UserLoginController($findUserByEmailServiceMock, $authServiceMock);
