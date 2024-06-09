@@ -2,15 +2,16 @@
 
 namespace Tests\Unit\src\Shared\Main\Roll\Application\Services;
 
-use Tests\TestCase;
 use Random\RandomException;
+use Src\BoundedContext\Shared\Main\Roll\Application\DTO\RollDto;
 use Src\BoundedContext\Shared\Main\Roll\Application\Services\RollService;
-use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
+use Tests\TestCase;
 
 class RollServiceTest extends TestCase
 {
     /**
-     * @throws RandomException
+     * @throws RandomException|InvalidDiceDefinitionException
      */
     public function testInvoke()
     {
@@ -25,11 +26,9 @@ class RollServiceTest extends TestCase
         $this->assertIsArray($result->details);
         $this->assertEquals($modifier, $result->modifier);
 
-        // Verificar que el total es correcto (al menos mayor que 0)
         $this->assertGreaterThan(0, $result->total);
 
-        // Verificar que los detalles contienen el número correcto de resultados
-        $expectedDetailsCount = 3; // 2d6 + 1d20 = 3 tiradas
+        $expectedDetailsCount = 3;
         $this->assertCount($expectedDetailsCount, $result->details);
     }
 }

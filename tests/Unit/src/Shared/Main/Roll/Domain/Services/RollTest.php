@@ -20,7 +20,7 @@ class RollTest extends TestCase
     {
         $dices = [
             new Dice(new DiceQuantity(2), new DiceFaces(6)),
-            new Dice(new DiceQuantity(1), new DiceFaces(20))
+            new Dice(new DiceQuantity(1), new DiceFaces(20)),
         ];
 
         $modifier = 2;
@@ -51,7 +51,7 @@ class RollTest extends TestCase
     public function testInvokeWithSingleDice()
     {
         $dices = [
-            new Dice(new DiceQuantity(1), new DiceFaces(6))
+            new Dice(new DiceQuantity(1), new DiceFaces(6)),
         ];
 
         $modifier = 0;
@@ -73,22 +73,19 @@ class RollTest extends TestCase
      * @throws RandomException
      * @throws InvalidDiceDefinitionException
      */
-    /**
-     * @throws RandomException
-     * @throws InvalidDiceDefinitionException
-     */
     public function testInvokeWithException()
     {
         $this->expectException(RandomException::class);
 
         $dices = [
-            new Dice(new DiceQuantity(1), new DiceFaces(6))
+            new Dice(new DiceQuantity(1), new DiceFaces(6)),
         ];
 
-        $roll = new class($dices, null) extends Roll {
+        $roll = new class($dices, null) extends Roll
+        {
             protected function randomInt(int $min, int $max): int
             {
-                throw new RandomException("Mocked exception");
+                throw new RandomException('Mocked exception');
             }
         };
 

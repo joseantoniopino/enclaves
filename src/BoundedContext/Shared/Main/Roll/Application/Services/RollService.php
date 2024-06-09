@@ -3,7 +3,7 @@
 namespace Src\BoundedContext\Shared\Main\Roll\Application\Services;
 
 use Random\RandomException;
-use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
+use Src\BoundedContext\Shared\Main\Roll\Application\DTO\RollDto;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Factories\DiceFactory;
 use Src\BoundedContext\Shared\Main\Roll\Domain\Services\Roll;

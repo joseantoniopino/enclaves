@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\BoundedContext\Shared\Main\Roll\Domain\DTO;
+namespace Src\BoundedContext\Shared\Main\Roll\Application\DTO;
 
 class RollDto
 {

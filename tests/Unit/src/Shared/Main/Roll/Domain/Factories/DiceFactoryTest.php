@@ -9,6 +9,9 @@ use Tests\TestCase;
 
 class DiceFactoryTest extends TestCase
 {
+    /**
+     * @throws InvalidDiceDefinitionException
+     */
     public function testCreateFromDefinitions()
     {
         $definitions = ['2d6', '1d20'];

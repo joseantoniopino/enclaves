@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Random\RandomException;
 use Src\BoundedContext\Shared\Main\Roll\Application\Responses\RollResponse;
+use Src\BoundedContext\Shared\Main\Roll\Application\Responses\RollResponseConverter;
 use Src\BoundedContext\Shared\Main\Roll\Application\Services\RollService;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Src\BoundedContext\Shared\Main\Roll\Infrastructure\Requests\RollRequest;
 
 class RollController extends Controller
@@ -17,12 +19,13 @@ class RollController extends Controller
     }
 
     /**
-     * @throws RandomException
+     * @throws RandomException|InvalidDiceDefinitionException
      */
     public function __invoke(RollRequest $request): JsonResponse
     {
         $roll = $this->rollService->__invoke($request->dices, $request->modifier);
+        $response = (new RollResponseConverter())->__invoke($roll);
 
-        return response()->json((new RollResponse($roll->total, $roll->modifier, $roll->details))->toArray());
+        return response()->json($response->toArray());
     }
 }

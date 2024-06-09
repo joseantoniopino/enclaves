@@ -3,11 +3,11 @@
 namespace Tests\Unit\src\Shared\Main\Roll\Infrastructure\Controllers;
 
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Validator;
 use Mockery;
 use Random\RandomException;
+use Src\BoundedContext\Shared\Main\Roll\Application\DTO\RollDto;
 use Src\BoundedContext\Shared\Main\Roll\Application\Services\RollService;
-use Src\BoundedContext\Shared\Main\Roll\Domain\DTO\RollDto;
+use Src\BoundedContext\Shared\Main\Roll\Domain\Exceptions\InvalidDiceDefinitionException;
 use Src\BoundedContext\Shared\Main\Roll\Infrastructure\Controllers\RollController;
 use Src\BoundedContext\Shared\Main\Roll\Infrastructure\Requests\RollRequest;
 use Tests\TestCase;
@@ -15,7 +15,7 @@ use Tests\TestCase;
 class RollControllerTest extends TestCase
 {
     /**
-     * @throws RandomException
+     * @throws RandomException|InvalidDiceDefinitionException
      */
     public function testInvoke()
     {
