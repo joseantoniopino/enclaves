@@ -1,6 +1,6 @@
 <?php
 
-namespace Src\BoundedContext\Main\Users\Domain\DTO;
+namespace Src\BoundedContext\Main\Users\Application\DTO;
 
 readonly class UserDto
 {

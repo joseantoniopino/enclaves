@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Support\Facades\Hash;
 use Src\BoundedContext\Main\Users\Application\Responses\UserResponse;
+use Src\BoundedContext\Main\Users\Application\Responses\UserResponseConverter;
 use Src\BoundedContext\Main\Users\Application\Services\CreateUserService;
 use Src\BoundedContext\Main\Users\Infrastructure\Requests\UserRegisterRequest;
 
@@ -25,6 +26,8 @@ class UserRegisterController extends Controller
             Hash::make($request->password),
         );
 
-        return response()->json((new UserResponse($user->uuid, $user->name, $user->email))->toArray(), 201);
+        $response = (new UserResponseConverter())->__invoke($user);
+
+        return response()->json($response->toArray(), 201);
     }
 }

@@ -5,7 +5,7 @@ namespace Src\BoundedContext\Main\Users\Infrastructure\Controllers;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\ValidationException;
-use Src\BoundedContext\Main\Users\Application\Responses\UserResponse;
+use Src\BoundedContext\Main\Users\Application\Responses\UserResponseConverter;
 use Src\BoundedContext\Main\Users\Application\Services\FindUserByEmailService;
 use Src\BoundedContext\Main\Users\Domain\Exceptions\InvalidCredentialsException;
 use Src\BoundedContext\Main\Users\Infrastructure\Interfaces\AuthServiceInterface;
@@ -31,11 +31,7 @@ class UserLoginController extends Controller
 
         $token = $this->authService->createToken($eloquentUser);
 
-        $response = new UserResponse(
-            $user->uuid,
-            $user->name,
-            $user->email,
-        );
+        $response = (new UserResponseConverter())->__invoke($user);
 
         return response()->json(array_merge($response->toArray(), ['token' => $token]));
     }

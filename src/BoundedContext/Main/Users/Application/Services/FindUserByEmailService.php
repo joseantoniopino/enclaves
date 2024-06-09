@@ -2,7 +2,7 @@
 
 namespace Src\BoundedContext\Main\Users\Application\Services;
 
-use Src\BoundedContext\Main\Users\Domain\DTO\UserDto;
+use Src\BoundedContext\Main\Users\Application\DTO\UserDto;
 use Src\BoundedContext\Main\Users\Domain\Exceptions\InvalidCredentialsException;
 use Src\BoundedContext\Main\Users\Domain\Repositories\UserRepository;
 
