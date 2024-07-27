@@ -9,6 +9,7 @@ use Src\BoundedContext\Main\Users\Infrastructure\Models\User;
 class UserFactory extends Factory
 {
     protected $model = User::class;
+
     protected static ?string $password = null;
 
     public function definition(): array

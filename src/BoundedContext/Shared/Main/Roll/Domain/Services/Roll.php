@@ -13,8 +13,7 @@ class Roll
     public function __construct(
         private readonly array $dices,
         private readonly ?int $modifier,
-    ) {
-    }
+    ) {}
 
     /**
      * @return array<string, int|array[]>

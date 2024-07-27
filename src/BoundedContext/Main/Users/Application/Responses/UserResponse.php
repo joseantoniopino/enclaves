@@ -8,8 +8,7 @@ class UserResponse
         public string $uuid,
         public string $name,
         public string $email,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

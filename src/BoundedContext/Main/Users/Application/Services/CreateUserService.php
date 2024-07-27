@@ -11,8 +11,7 @@ class CreateUserService
 {
     public function __construct(
         private readonly UserRepository $repository
-    ) {
-    }
+    ) {}
 
     public function __invoke(?string $uuid, string $name, string $email, string $password): UserDto
     {

@@ -11,6 +11,5 @@ class RollDto
         public readonly int $total,
         public readonly int $modifier,
         public readonly array $details,
-    ) {
-    }
+    ) {}
 }

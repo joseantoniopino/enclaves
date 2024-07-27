@@ -6,6 +6,5 @@ abstract class IntValueObject
 {
     public function __construct(
         public readonly int $value,
-    ) {
-    }
+    ) {}
 }

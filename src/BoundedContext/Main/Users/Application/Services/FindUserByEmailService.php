@@ -10,8 +10,7 @@ class FindUserByEmailService
 {
     public function __construct(
         private readonly UserRepository $repository
-    ) {
-    }
+    ) {}
 
     /**
      * @throws InvalidCredentialsException

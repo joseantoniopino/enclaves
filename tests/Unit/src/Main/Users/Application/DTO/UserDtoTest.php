@@ -2,7 +2,6 @@
 
 namespace Tests\Unit\src\Main\Users\Application\DTO;
 
-
 use Src\BoundedContext\Main\Users\Application\DTO\UserDto;
 use Tests\TestCase;
 

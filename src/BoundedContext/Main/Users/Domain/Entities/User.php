@@ -14,6 +14,5 @@ class User
         public readonly UserName $name,
         public readonly UserEmail $email,
         public readonly ?UserPassword $password = null,
-    ) {
-    }
+    ) {}
 }

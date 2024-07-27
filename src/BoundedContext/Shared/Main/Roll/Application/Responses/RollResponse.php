@@ -11,8 +11,7 @@ class RollResponse
         public readonly int $total,
         public readonly int $modifier,
         public readonly array $details,
-    ) {
-    }
+    ) {}
 
     public function toArray(): array
     {

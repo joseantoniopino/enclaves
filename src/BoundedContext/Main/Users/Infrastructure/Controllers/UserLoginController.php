@@ -16,8 +16,7 @@ class UserLoginController extends Controller
     public function __construct(
         private readonly FindUserByEmailService $findUserByEmailService,
         private readonly AuthServiceInterface $authService,
-    ) {
-    }
+    ) {}
 
     /**
      * @throws ValidationException

@@ -7,6 +7,7 @@ use Illuminate\Console\Command;
 class MigrateLiteCommand extends Command
 {
     protected $signature = 'migrate:lite {operation=migrate} {--force} {--seed} {--step} {--database=sqlite} {--path=database/migrations/lite}';
+
     protected $description = 'Run various migration operations for the lite database';
 
     public function handle(): void
